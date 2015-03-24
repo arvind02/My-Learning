@@ -1,0 +1,80 @@
+Working with Ruby Arrays
+
+This article will cover the basics of working with Ruby Arrays. All of the examples in this article can be run using the ruby console, which can be access using the irb command. If you want to exit ruby at any time, simply type exit.
+Creating a new Array
+
+The easiest way to create a new array is shown below.
+a = []
+You can also use Array.new.
+a = Array.new
+You can also prepopulate the array.
+a = [1, 2, 3, 4, 5, 6]
+Using Array.new you can also specify the size of the array, and even prepopulate each element with a default value.
+a = Array.new(3, "hi") # returns ["hi", "hi", "hi"]
+You can also quickly create multidimensional arrays.
+a = Array.new( 3, Array.new(3) ) #  returns [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]]
+Accessing Array Elements
+
+You can quickly and easily access one or multiple array elements. See the examples below.
+a = [1, 2, 3, 4, 5]
+
+a[0] #  returns the first element in the array, 1
+a[-1] #  skips backwards to the last element in the array
+a[1,3] #  starts at position 1 and ends at postion 3, returns [2,3,4]
+a[1..2] # same thing
+Adding Elements to an Array
+
+You can add an element to the end of an array.
+a = [1, 2, 3, 4]
+a.push(5) #   returns [1, 2, 3, 4, 5]
+a << 6
+You can also add items to the beginning of an array using unshift.
+a.unshift(5) #  returns [5, 1, 2, 3, 4, 5, 6]
+You can also insert an element at any position.
+a.insert(4,0) #  returns [5, 1, 2, 3, 0, 4, 5, 6]
+Removing Elements from an Array
+
+You can remove the last element in the array using pop.
+a = [5, 1, 2, 3, 0, 4, 5, 6]
+a.pop # removes the number 6 from the array and returns it.
+You can also remove the first item in an array.
+a.shift # returns the first number 5 and removes it from the array.
+You can remove an item at a specific position.
+a = [1, 2, 3, 4, 5, 6]
+a.delete_at(3) # removes the number 4 and returns it.
+You can also delete all occurrences of a specific value in an array.
+ a = [5, 5, 5, 1, 1, 5, 5]
+ a.delete(1) # Array is now [5, 5, 5, 5, 5]
+Special Operations
+
+You can remove nils from an array using compact or you can modify the original array using compact!.
+a = [1, 1, nil, 3, 4, nil, 5]
+a.compact # returns a copy of a without the nils [1, 1, 3, 4, 5]
+a.compact! # The original array is now [1, 1, 3, 4, 5]
+You can remove duplicate elements from the array using uniq or it's destructive uniq! cousin.
+a = [1, 1, 1, 2, 2, 3, 3, 3, 4, 4]
+a.uniq # returns a copy of the array containing [1, 2, 3, 4]
+a.uniq # modifies the original array to contain [1, 2, 3, 4]
+You can reverse the elements in an array using reverse and reverse!.
+ a = [1, 2, 3, 4]
+ a.reverse # returns a copy of the array containing [4, 3, 2, 1]
+ a.reverse! # The original array now contains [4, 3, 2, 1]
+Iterating over an Array
+
+You can iterate over an array using each.
+a = [1, 2, 3, 4]
+a.each do |val|
+  put "#{val}! " # prints 1! 2! 3! 4!
+end 
+You can also use the map and it's cousin map! function to perform an operation on each element in an array and return the result.
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+a.map { |val| 2 * val} # returns a copy of the array containing [2, 4, 6, 8, 10, 12, 14, 16, 18]
+a.map! { |val| 2 * val} # modifies the original array to contain [2, 4, 6, 8, 10, 12, 14, 16, 18]
+You can use select and select! to select elements based on specific criteria.
+a.select {|val| val > 10} # returns a copy of the array containing [12, 14, 16, 18]
+a.select! {|val| val > 10} # modifies the original array to be [12, 14, 16, 18] 
+The reject and reject! do the exact opposite.
+ a = [1, 2, 3, 4, 5]
+ a.reject { |val| val < 3 } # returns a copy of the array containing [3, 4, 5]
+ a.reject! { |val| val < 3 } # modifies the original array to be [3, 4, 5]
+That's it! Thanks for reading!
